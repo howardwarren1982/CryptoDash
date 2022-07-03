@@ -1,0 +1,11 @@
+.side-bar {
+  .exchange-list {
+    height: 500px;
+    overflow-y: scroll;
+  }
+
+  .exchange-list::-webkit-scrollbar {
+    width: 1em;
+    color: aquamarine;
+  }
+}

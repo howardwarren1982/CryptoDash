@@ -15,6 +15,22 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sass`,
     {
+      resolve: "gatsby-plugin-firebase-v9.0",
+      options: {
+        credentials: {
+          apiKey: process.env.GATSBY_APIKEY,
+          authDomain: process.env.GATSBY_AUTHDOMAIN,
+          databaseURL: process.env.GATSBY_DATABASEURL,
+          projectId: process.env.GATSBY_PROJECTID,
+          storageBucket: process.env.GATSBY_STORAGEBUCKET,
+          messagingSenderId: process.env.GATSBY_MESSAGINGSENDERID,
+          appId: process.env.GATSBY_APPID,
+          measurementId: process.env.GATSBY_MEASUREMENTID,
+        },
+      },
+    },
+
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
