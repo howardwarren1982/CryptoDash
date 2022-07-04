@@ -5,6 +5,7 @@ import app from "gatsby-plugin-firebase-v9.0"
 import { navigate } from "gatsby"
 import UserOnlyContent from "../components/UserOnlyContent"
 import SideBar from "../components/sidebar.component/SideBar"
+import LineChart from "../components/chart.component/LineChart"
 
 const DashBoard = () => {
   const auth = getAuth(app)
@@ -29,7 +30,10 @@ const DashBoard = () => {
         </nav>
         <div className="main-section">
           <SideBar />
-          <div className="chartarea">Chart area</div>
+          <div className="chartarea">
+            Chart area
+            <LineChart />
+          </div>
         </div>
       </UserOnlyContent>
     </div>

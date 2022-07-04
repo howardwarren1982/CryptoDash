@@ -4,17 +4,16 @@ import "./sideBarStyle.scss"
 import { useState } from "react"
 
 function SideBar() {
-  const [serchresult, setSearchResult] = useState()
+  let [searchresult, setSearchResult] = useState("")
 
   const onchange = e => {
     setSearchResult(e.target.value)
   }
 
   let filtedCryptoCoinList = cryptoCoinList.filter(cryptoCoin =>
-    cryptoCoin.name.toLowerCase().includes(serchresult.toLowerCase())
+    cryptoCoin.name.toLowerCase().includes(searchresult.toLowerCase())
   )
 
-  console.log(serchresult)
   return (
     <div className="side-bar">
       User Email

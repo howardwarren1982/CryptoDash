@@ -1,9 +1,3 @@
-export const unixToDate = function (unixTimeStamp) {
-  const timeConvertion = 1000
-  let date = new Date(unixTimeStamp * timeConvertion)
-  return (output = date.toLocaleDateString())
-}
-
 export const getXData = function (inputObj) {
   let outPut = []
   inputObj.map(item => {
@@ -140,7 +134,7 @@ const currentCoinData = {
 
 const { prices, market_caps, total_volumes } = Cryptodata
 
-const unixToDate = function (unixTimeStamp, timeConvertion = 1) {
+export const unixToDate = function (unixTimeStamp, timeConvertion = 1) {
   let date = new Date(unixTimeStamp * timeConvertion)
   return date.toLocaleDateString()
 }
