@@ -159,7 +159,7 @@ export const data = {
 
 function LineChart() {
   return (
-    <div>
+    <div className="line-graph">
       <Line options={options} data={data} />
     </div>
   )

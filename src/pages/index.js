@@ -1,11 +1,6 @@
 import * as React from "react"
 import Layout from "../components/layout"
-import SignUp from "../components/signup.component/SignUp"
 import Login from "../components/loginRegister.component/login"
-import app from "gatsby-plugin-firebase-v9.0"
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite"
-
-import DashBoard from "./dashBoard"
 
 const IndexPage = () => {
   return (
@@ -21,3 +16,28 @@ export default IndexPage
 //   collection(getFirestore(app), "users")
 // )
 // console.log(value)
+//--------------------------------------------------------
+// to get data from the database using UID
+// import { getFirestore, doc } from 'firebase/firestore';
+// import { useDocument } from 'react-firebase-hooks/firestore';
+
+// const FirestoreDocument = () => {
+//   const [value, loading, error] = useDocument(
+//     doc(getFirestore(firebaseApp), 'hooks', 'nBShXiRGFAhuiPfBaGpt'),
+//     {
+//       snapshotListenOptions: { includeMetadataChanges: true },
+//     }
+//   );
+//   return (
+//     <div>
+//       <p>
+//         {error && <strong>Error: {JSON.stringify(error)}</strong>}
+//         {loading && <span>Document: Loading...</span>}
+//         {value && <span>Document: {JSON.stringify(value.data())}</span>}
+//       </p>
+//     </div>
+//   );
+// };
+
+//put data into firestore
+// import { getFirestore, doc } from 'firebase/firestore';

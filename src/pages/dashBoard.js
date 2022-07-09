@@ -6,6 +6,7 @@ import { navigate } from "gatsby"
 import UserOnlyContent from "../components/UserOnlyContent"
 import SideBar from "../components/sidebar.component/SideBar"
 import LineChart from "../components/chart.component/LineChart"
+import FollowBtn from "../components/followbtn.component/FollowBtn"
 
 const DashBoard = () => {
   const auth = getAuth(app)
@@ -16,7 +17,6 @@ const DashBoard = () => {
     }
   }
   const [user, loading, error] = useAuthState(auth)
-  console.log(user, loading, error)
 
   return (
     <div>
@@ -34,6 +34,7 @@ const DashBoard = () => {
             Chart area
             <LineChart />
           </div>
+          <FollowBtn />
         </div>
       </UserOnlyContent>
     </div>
