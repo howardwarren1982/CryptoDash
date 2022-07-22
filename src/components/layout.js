@@ -4,14 +4,10 @@ import "./layout.scss"
 
 import Header from "./header"
 
-
 const Layout = ({ children }) => {
   return (
     <>
-      <Header />
-      <>
-      {children}
-      </>
+      <div className="app-style">{children}</div>
     </>
   )
 }

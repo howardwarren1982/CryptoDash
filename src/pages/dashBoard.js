@@ -7,6 +7,9 @@ import UserOnlyContent from "../components/UserOnlyContent"
 import SideBar from "../components/sidebar.component/SideBar"
 import LineChart from "../components/chart.component/LineChart"
 import FollowBtn from "../components/followbtn.component/FollowBtn"
+import UnfollowBtn from "../components/unfollowbtn.component/UnfollowBtn"
+import FollowDisplay from "../components/followDisplay.component/FollowDisplay"
+import ExtchangeInfo from "../components/exchangeInfoDisplay.component/ExtchangeInfo"
 
 const DashBoard = () => {
   const auth = getAuth(app)
@@ -30,11 +33,14 @@ const DashBoard = () => {
         </nav>
         <div className="main-section">
           <SideBar />
+          <FollowDisplay />
           <div className="chartarea">
             Chart area
             <LineChart />
           </div>
-          <FollowBtn />
+          <FollowBtn>follow</FollowBtn>
+          <UnfollowBtn>unfollow</UnfollowBtn>
+          <ExtchangeInfo />
         </div>
       </UserOnlyContent>
     </div>

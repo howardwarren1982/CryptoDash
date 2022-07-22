@@ -7,24 +7,40 @@ import { useAuthState } from "react-firebase-hooks/auth"
 import { getFirestore, setDoc, doc } from "firebase/firestore"
 import useFirebaseFunctions from "../../utils/hooks/useFirebaseFunctions"
 import { useDocument } from "react-firebase-hooks/firestore"
+import { useState, useEffect } from "react"
 
-function FollowBtn() {
+function FollowBtn({ children }) {
   const auth = getAuth(app)
   const selection = useSelectionContext()
   const [user] = useAuthState(auth)
   const db = getFirestore(app)
-  const addToFirestore = useFirebaseFunctions(db, "Follow", "uid23", {
-    name: "test3",
-  })
-  const [value, loading, error] = useDocument(doc(db, "Follow", "uid23"), {
+  const [coinList, setToCoinList] = useState([])
+  const addToFirestore = useFirebaseFunctions(db, "Follow", user?.uid)
+  const [value] = useDocument(doc(db, "Follow", user.uid), {
     snapshotListenOptions: { includeMetadataChanges: true },
   })
+  let handelClick
 
-  console.log(value.data())
+  useEffect(() => {
+    setToCoinList(value?.data().exchange)
+  }, [value])
+
+  handelClick = () => {
+    //if prevCoinList contains selection do not add to firestore
+    if (coinList.includes(selection)) {
+      return
+    }
+    const prevCoinList = coinList
+    const newCoinList = [...prevCoinList, selection]
+    setToCoinList(newCoinList)
+    console.log(coinList)
+    addToFirestore({ exchange: newCoinList })
+  }
+
   return (
     <div>
-      {" "}
-      <button onClick={addToFirestore}>follow</button>{" "}
+      {console.log(coinList)}
+      <button onClick={handelClick}>{children}</button>{" "}
     </div>
   )
 }

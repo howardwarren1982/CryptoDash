@@ -17,7 +17,6 @@ export function SelectionProvider({ children }) {
 
   function updateSelection(newSelection) {
     setSelection(newSelection)
-    console.log(selection)
   }
 
   return (

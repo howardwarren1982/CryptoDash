@@ -136,3 +136,11 @@ section {
   }
 }
 
+.app-style {
+  background-image: url("../images/AppBG.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  font-family: "Noto Sans", sans-serif;
+}

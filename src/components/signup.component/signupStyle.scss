@@ -1,0 +1,43 @@
+.signup-screen {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 10px;
+  padding-top: 40vh;
+  transform: translate(0, 90%);
+  h1 {
+    color: white;
+  }
+
+  padding-top: 18px;
+  padding-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #04070a;
+  opacity: 0.95;
+  box-shadow: 21px 20px 4px rgba(0, 0, 0, 0.25);
+  input {
+    margin-bottom: 30px;
+    max-width: 515px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .signin-btn {
+    width: 150px;
+    height: 50px;
+    margin: 0 auto 0 auto;
+    background-color: #2d4757;
+    color: white;
+
+    &:hover {
+      border: 1px solid #a355aa;
+    }
+  }
+
+  .register-link {
+    margin-top: 15px;
+  }
+}

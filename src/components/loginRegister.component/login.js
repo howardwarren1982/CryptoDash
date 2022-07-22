@@ -4,6 +4,7 @@ import { getAuth, signOut } from "firebase/auth"
 import app from "gatsby-plugin-firebase-v9.0"
 import { useState } from "react"
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth"
+import Layout from "../layout"
 import "./loginStyle.scss"
 
 function Login() {
@@ -34,7 +35,6 @@ function Login() {
   }
   const signIn = () => {
     //validate email
-    const email = document.getElementById("email").value
     const re =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (!re.test(String(email).toLowerCase())) {
@@ -46,21 +46,31 @@ function Login() {
   }
 
   return (
-    <div className="App">
-      <h1>Login</h1>
-      <input
-        id="email"
-        type="email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      />
-      <button onClick={signIn}>Sign In</button>
-      <Link to="register">Sign Up</Link>
+    <div className="login-screen">
+      <div className="blockBG">
+        <h1 className="login-header">Login</h1>
+        <input
+          className="email-signin"
+          id="email"
+          type="email"
+          value={email}
+          placeholder="Email"
+          onChange={e => setEmail(e.target.value)}
+        />
+        <input
+          className="password-signin"
+          type="password"
+          value={password}
+          placeholder="Password"
+          onChange={e => setPassword(e.target.value)}
+        />
+        <button className="signin-btn" onClick={signIn}>
+          Sign In
+        </button>
+        <Link className="register-link" to="register">
+          Sign Up
+        </Link>
+      </div>
     </div>
   )
 }

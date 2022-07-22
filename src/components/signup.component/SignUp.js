@@ -1,5 +1,5 @@
 import React from "react"
-import { navigate } from "gatsby"
+import { navigate, Link } from "gatsby"
 import { useState } from "react"
 import { getAuth } from "firebase/auth"
 import app from "gatsby-plugin-firebase-v9.0"
@@ -10,6 +10,7 @@ const SignUp = () => {
   const auth = getAuth(app)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth)
 
@@ -33,8 +34,6 @@ const SignUp = () => {
 
   const signUp = () => {
     // if password not match, show error
-    const password = document.getElementById("password").value
-    const confirmPassword = document.getElementById("confirmPassword").value
 
     if (password !== confirmPassword) {
       alert("Passwords do not match")
@@ -42,7 +41,7 @@ const SignUp = () => {
     }
 
     //validate email
-    const email = document.getElementById("email").value
+
     const re =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (!re.test(String(email).toLowerCase())) {
@@ -57,23 +56,38 @@ const SignUp = () => {
   }
 
   return (
-    <div className="App">
-      <h1>Sign Up</h1>
-      <input
-        id="email"
-        type="email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-      />
-      <input
-        id="password"
-        type="password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      />
-      <label>confirm password</label>
-      <input id="confirmPassword" type="password" />
-      <button onClick={signUp}>Register</button>
+    <div className="template">
+      <div className="signup-screen">
+        <h1>Sign Up</h1>
+        <input
+          className="email-signup"
+          id="email"
+          type="email"
+          value={email}
+          placeholder="email"
+          onChange={e => setEmail(e.target.value)}
+        />
+        <input
+          className="password-signup"
+          id="password"
+          type="password"
+          value={password}
+          placeholder="password"
+          onChange={e => setPassword(e.target.value)}
+        />
+        <label>confirm password</label>
+        <input
+          className="password-signup"
+          id="confirmPassword"
+          type="password"
+          placeholder="confirm Password"
+          onChange={e => setConfirmPassword(e.target.value)}
+        />
+        <button className="signin-btn" onClick={signUp}>
+          Register
+        </button>
+        <Link to="/">Login</Link>
+      </div>
     </div>
   )
 }
