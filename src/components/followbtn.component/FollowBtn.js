@@ -39,7 +39,6 @@ function FollowBtn({ children }) {
 
   return (
     <div>
-      {console.log(coinList)}
       <button onClick={handelClick}>{children}</button>{" "}
     </div>
   )

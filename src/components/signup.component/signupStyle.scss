@@ -25,19 +25,44 @@
     margin-right: auto;
   }
 
-  .signin-btn {
-    width: 150px;
-    height: 50px;
-    margin: 0 auto 0 auto;
-    background-color: #2d4757;
-    color: white;
+  input[type="email"],
+  input[type="password"],
+  input:focus {
+    border: none;
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    padding-left: 3px;
+    padding-right: 3px;
+    font-size: 17px;
+    font-weight: 400;
+    border-bottom: #a355aa 1px solid;
 
-    &:hover {
-      border: 1px solid #a355aa;
+    &:focus {
+      outline: none;
     }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #04070a inset !important;
+  }
+
+  /*Change text in autofill textbox*/
+  input:-webkit-autofill {
+    -webkit-text-fill-color: rgb(255, 255, 255) !important;
   }
 
   .register-link {
     margin-top: 15px;
+    margin-bottom: 15px;
+    color: #a355aa;
+    font-size: 18px;
+    font-weight: 400;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

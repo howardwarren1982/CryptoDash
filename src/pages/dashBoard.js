@@ -6,10 +6,9 @@ import { navigate } from "gatsby"
 import UserOnlyContent from "../components/UserOnlyContent"
 import SideBar from "../components/sidebar.component/SideBar"
 import LineChart from "../components/chart.component/LineChart"
-import FollowBtn from "../components/followbtn.component/FollowBtn"
-import UnfollowBtn from "../components/unfollowbtn.component/UnfollowBtn"
 import FollowDisplay from "../components/followDisplay.component/FollowDisplay"
 import ExtchangeInfo from "../components/exchangeInfoDisplay.component/ExtchangeInfo"
+import "./dashBoardStyle.scss"
 
 const DashBoard = () => {
   const auth = getAuth(app)
@@ -28,19 +27,24 @@ const DashBoard = () => {
         routeTologin={"yes"}
         authUser={user}
       >
-        <nav>
-          Nave Bar--------------- <button onClick={logout}>Log out</button>
-        </nav>
         <div className="main-section">
-          <SideBar />
-          <FollowDisplay />
-          <div className="chartarea">
-            Chart area
-            <LineChart />
+          <div className="side-bar">
+            <SideBar />
           </div>
-          <FollowBtn>follow</FollowBtn>
-          <UnfollowBtn>unfollow</UnfollowBtn>
-          <ExtchangeInfo />
+          <div className="main-area">
+            <nav>
+              <div className="Dash-heading"> HOWARD'S CRYPTO DASH </div>
+              <button className="signin-btn" onClick={logout}>
+                Log out
+              </button>
+            </nav>
+
+            <div className="chartarea">
+              <LineChart />
+              <FollowDisplay />
+            </div>
+            <ExtchangeInfo />
+          </div>
         </div>
       </UserOnlyContent>
     </div>

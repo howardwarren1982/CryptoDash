@@ -58,6 +58,7 @@ function Login() {
           onChange={e => setEmail(e.target.value)}
         />
         <input
+          autocomplete="off"
           className="password-signin"
           type="password"
           value={password}

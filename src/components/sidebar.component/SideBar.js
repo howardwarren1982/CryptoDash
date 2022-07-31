@@ -6,6 +6,7 @@ import { useSelectionUpdateContext } from "../../utils/context/SelectionContext"
 import { useAuthState } from "react-firebase-hooks/auth"
 import app from "gatsby-plugin-firebase-v9.0"
 import { getAuth } from "firebase/auth"
+import ExchangeCard from "../exchangeCards.component/ExchangeCard"
 
 function SideBar() {
   const auth = getAuth(app)
@@ -23,8 +24,7 @@ function SideBar() {
 
   return (
     <div className="side-bar">
-      {user?.email}
-      {console.log(user?.uid)}
+      <div className="user-email">{user?.email}</div>
       <input
         className="search-bar"
         type="text"
@@ -33,15 +33,13 @@ function SideBar() {
       />
       <div className="exchange-list">
         {filtedCryptoCoinList.map(coin => (
-          <div
-            className="coin-list-item"
-            onClick={e => setSelection(e.target.id)}
-            key={coin.id}
-            id={coin.id}
-          >
-            <div className="coin-list-item-name">{coin.name}</div>
-            <img src={coin.image} alt="" />
-            <div>---------------------------------</div>
+          <div key={coin.id} className="coin-list-item">
+            <div
+              onClick={e => setSelection(e.target.id)}
+              id={coin.id}
+              className="clickable-cover"
+            ></div>
+            <ExchangeCard picture={coin.image} title={coin.name} />
           </div>
         ))}
       </div>

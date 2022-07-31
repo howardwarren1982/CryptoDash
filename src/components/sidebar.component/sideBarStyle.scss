@@ -1,11 +1,40 @@
 .side-bar {
+  padding-right: 10px;
+  overflow: hidden;
+
   .exchange-list {
     height: 500px;
     overflow-y: scroll;
+    padding-right: 20px;
   }
 
   .exchange-list::-webkit-scrollbar {
     width: 1em;
     color: aquamarine;
+  }
+
+  .clickable-cover {
+    position: relative;
+    background-color: aqua;
+    width: 250px;
+    height: 70px;
+    opacity: 0;
+    z-index: 1;
+    top: 75px;
+  }
+
+  .user-email {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .search-bar {
+    margin-bottom: 50px;
+    margin-left: 35px;
+
+    &:focus {
+      outline: none;
+    }
   }
 }

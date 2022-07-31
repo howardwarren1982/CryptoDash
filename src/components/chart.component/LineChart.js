@@ -39,7 +39,7 @@ function LineChart() {
       },
       title: {
         display: true,
-        text: "Chart.js Line Chart",
+        text: "Line Chart",
       },
     },
   }
@@ -65,7 +65,15 @@ function LineChart() {
       {
         label: "Bitcoin Vs Usd",
         data: getYData(Cryptodata[daySelection]),
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "rgba(255, 255, 255, 1)",
+        borderColor: "#98B9AB",
+        borderWidth: 1,
+        pointBackgroundColor: "#98B9AB",
+        pointBorderColor: "#98B9AB",
+        pointHoverBackgroundColor: "#98B9AB",
+        pointHoverBorderColor: "#98B9AB",
+        pointRadius: 5,
+        pointHoverRadius: 10,
       },
     ],
   }

@@ -27,7 +27,7 @@ function UnfollowBtn({ children }) {
   }, [selection])
 
   handelClick = () => {
-    const newCoinList = coinList.filter(coin => coin !== selection)
+    const newCoinList = coinList?.filter(coin => coin !== selection)
     setToCoinList(newCoinList)
     console.log(newCoinList + "34")
     addToFirestore({ exchange: newCoinList })
@@ -35,7 +35,7 @@ function UnfollowBtn({ children }) {
 
   return (
     <div>
-      <button onClick={handelClick}>{children}</button> <h1>{selection}</h1>
+      <button onClick={handelClick}>{children}</button>
     </div>
   )
 }

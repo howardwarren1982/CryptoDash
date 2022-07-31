@@ -1,0 +1,50 @@
+.main-section {
+  background-color: #04070a;
+  color: white;
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  transform: translateY(5%);
+  padding: 23px;
+  overflow: hidden;
+
+  nav {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50%;
+  }
+
+  .chartarea {
+    display: flex;
+    gap: 10%;
+  }
+
+  .main-area {
+    border-left: #a355aa 2px solid;
+    padding-left: 32px;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #a355aa;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #7d4283;
+  }
+}
