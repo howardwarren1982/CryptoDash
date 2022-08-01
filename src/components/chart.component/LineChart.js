@@ -1,5 +1,6 @@
 import React from "react"
 import { useState } from "react"
+import useFetch from "../../utils/hooks/useFetch"
 import "./lineChartStyle.scss"
 import { Cryptodata } from "./lineChartData"
 import { unixToDate, getXData, getYData } from "../../utils/utilFunctions"
@@ -27,12 +28,48 @@ ChartJS.register(
 
 function LineChart() {
   const [daySelection, setDaySelection] = useState("day")
+  const [lineChartDataDay] = useFetch(
+    "https://api.coingecko.com/api/v3/exchanges/binance/volume_chart?days=1"
+  )
+  const [lineChartDataWeek] = useFetch(
+    "https://api.coingecko.com/api/v3/exchanges/binance/volume_chart?days=7"
+  )
+
+  const [lineChartData30] = useFetch(
+    "https://api.coingecko.com/api/v3/exchanges/binance/volume_chart?days=30"
+  )
+
+  const [lineChartDataYear] = useFetch(
+    "https://api.coingecko.com/api/v3/exchanges/binance/volume_chart?days=365"
+  )
+
+  console.log(lineChartDataDay)
+  console.log(lineChartDataWeek)
+  console.log(lineChartData30)
+
+  Cryptodata["day"] = lineChartDataDay
+  Cryptodata["week"] = lineChartDataWeek
+  Cryptodata["month"] = lineChartData30
+  Cryptodata["year"] = lineChartDataYear
+
   const handleChange = function (e) {
     setDaySelection(e.target.value)
   }
 
   const options = {
     responsive: true,
+    scales: {
+      x: {
+        grid: {
+          color: "rgba(0,0,0,0.9)",
+        },
+      },
+      y: {
+        grid: {
+          color: "rgba(0,0,0,0.9)",
+        },
+      },
+    },
     plugins: {
       legend: {
         position: "top",
@@ -44,19 +81,6 @@ function LineChart() {
     },
   }
 
-  let newCryptodata = []
-
-  Cryptodata[daySelection].map((item, index, array) => {
-    ;[unixToDate(item[0]), item[1]].push(newCryptodata)
-    console.log([unixToDate(item[0]), item[1]])
-  })
-
-  console.log(newCryptodata)
-
-  Cryptodata[daySelection].map(item => {
-    item[0] = unixToDate(item[0])
-  })
-
   let labels = getXData(Cryptodata[daySelection])
 
   const data = {
@@ -66,14 +90,14 @@ function LineChart() {
         label: "Bitcoin Vs Usd",
         data: getYData(Cryptodata[daySelection]),
         backgroundColor: "rgba(255, 255, 255, 1)",
-        borderColor: "#98B9AB",
+        borderColor: "#ffffff",
         borderWidth: 1,
-        pointBackgroundColor: "#98B9AB",
-        pointBorderColor: "#98B9AB",
+        pointBackgroundColor: "##ffffff",
+        pointBorderColor: "#ffffff",
         pointHoverBackgroundColor: "#98B9AB",
         pointHoverBorderColor: "#98B9AB",
-        pointRadius: 5,
-        pointHoverRadius: 10,
+        pointRadius: 1,
+        pointHoverRadius: 5,
       },
     ],
   }

@@ -1,14 +1,19 @@
+const unixToDate = function (unixTimeStamp, timeConvertion = 1) {
+  let date = new Date(unixTimeStamp * timeConvertion)
+  return date.toLocaleDateString()
+}
+
 export const getXData = function (inputObj) {
   let outPut = []
-  inputObj.map(item => {
-    outPut.push(item[0])
+  inputObj?.map(item => {
+    outPut.push(unixToDate(item[0]))
   })
   return outPut
 }
 
 export const getYData = function (inputObj) {
   let outPut = []
-  inputObj.map(item => {
+  inputObj?.map(item => {
     outPut.push(item[1])
   })
   return outPut
@@ -28,9 +33,4 @@ const currentCoinData = {
     usd_24h_change: -0.15301677680724698,
     last_updated_at: 1656810379,
   },
-}
-
-export const unixToDate = function (unixTimeStamp, timeConvertion = 1) {
-  let date = new Date(unixTimeStamp * timeConvertion)
-  return date.toLocaleDateString()
 }
