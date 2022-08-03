@@ -1,5 +1,9 @@
 import React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import {
+  useSelectionContext,
+  useSelectionUpdateContext,
+} from "../../utils/context/SelectionContext"
 import useFetch from "../../utils/hooks/useFetch"
 import "./lineChartStyle.scss"
 import { Cryptodata } from "./lineChartData"
@@ -28,29 +32,36 @@ ChartJS.register(
 
 function LineChart() {
   const [daySelection, setDaySelection] = useState("day")
-  const [lineChartDataDay] = useFetch(
-    "https://api.coingecko.com/api/v3/exchanges/binance/volume_chart?days=1"
+  let selection = useSelectionContext()
+  const setSelection = useSelectionUpdateContext()
+
+  useEffect(() => {
+    setSelection("binance")
+  }, [])
+
+  const [Day] = useFetch(
+    `https://api.coingecko.com/api/v3/exchanges/${selection}/volume_chart?days=1`
   )
-  const [lineChartDataWeek] = useFetch(
-    "https://api.coingecko.com/api/v3/exchanges/binance/volume_chart?days=7"
+  const [Week] = useFetch(
+    `https://api.coingecko.com/api/v3/exchanges/${selection}/volume_chart?days=7`
   )
 
-  const [lineChartData30] = useFetch(
-    "https://api.coingecko.com/api/v3/exchanges/binance/volume_chart?days=30"
+  const [month] = useFetch(
+    `https://api.coingecko.com/api/v3/exchanges/${selection}/volume_chart?days=30`
   )
 
-  const [lineChartDataYear] = useFetch(
-    "https://api.coingecko.com/api/v3/exchanges/binance/volume_chart?days=365"
-  )
+  //setlineChartDataDay(Day)
+  // setlineChartDataWeek(Week)
+  // setlineChartData30(month)
+  // setlineChartDataYear(Year)
 
-  console.log(lineChartDataDay)
-  console.log(lineChartDataWeek)
-  console.log(lineChartData30)
+  // console.log(lineChartDataDay)
+  // console.log(lineChartDataWeek)
+  // console.log(lineChartData30)
 
-  Cryptodata["day"] = lineChartDataDay
-  Cryptodata["week"] = lineChartDataWeek
-  Cryptodata["month"] = lineChartData30
-  Cryptodata["year"] = lineChartDataYear
+  Cryptodata["day"] = Day
+  Cryptodata["week"] = Week
+  Cryptodata["month"] = month
 
   const handleChange = function (e) {
     setDaySelection(e.target.value)
@@ -112,7 +123,6 @@ function LineChart() {
         </option>
         <option value="week"> Week</option>
         <option value="month">Month</option>
-        <option value="year">Year</option>
       </select>
     </div>
   )

@@ -2,6 +2,7 @@ import React from "react"
 import { cryptoCoinList } from "../../data/appData"
 import "./sideBarStyle.scss"
 import { useState } from "react"
+import useFetch from "../../utils/hooks/useFetch"
 import { useSelectionUpdateContext } from "../../utils/context/SelectionContext"
 import { useAuthState } from "react-firebase-hooks/auth"
 import app from "gatsby-plugin-firebase-v9.0"
@@ -13,12 +14,15 @@ function SideBar() {
   const setSelection = useSelectionUpdateContext()
   let [searchresult, setSearchResult] = useState("")
   const [user, loading, error] = useAuthState(auth)
+  const [exchangeListData] = useFetch(
+    "https://api.coingecko.com/api/v3/exchanges"
+  )
 
   const onchange = e => {
     setSearchResult(e.target.value)
   }
 
-  let filtedCryptoCoinList = cryptoCoinList.filter(cryptoCoin =>
+  let filtedCryptoCoinList = exchangeListData?.filter(cryptoCoin =>
     cryptoCoin.name.toLowerCase().includes(searchresult.toLowerCase())
   )
 
@@ -32,7 +36,7 @@ function SideBar() {
         onChange={onchange}
       />
       <div className="exchange-list">
-        {filtedCryptoCoinList.map(coin => (
+        {filtedCryptoCoinList?.map(coin => (
           <div key={coin.id} className="coin-list-item">
             <div
               onClick={e => setSelection(e.target.id)}
