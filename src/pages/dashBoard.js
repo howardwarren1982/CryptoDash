@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { useSelectionUpdateContext } from "../utils/context/SelectionContext"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { getAuth, signOut } from "firebase/auth"
 import app from "gatsby-plugin-firebase-v9.0"
@@ -11,6 +12,10 @@ import ExtchangeInfo from "../components/exchangeInfoDisplay.component/Extchange
 import "./dashBoardStyle.scss"
 
 const DashBoard = () => {
+  const setSelection = useSelectionUpdateContext()
+  useEffect(() => {
+    setSelection("binance")
+  }, [])
   const auth = getAuth(app)
   const logout = () => {
     signOut(auth)

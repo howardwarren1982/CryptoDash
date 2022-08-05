@@ -1,13 +1,10 @@
 import React from "react"
-import { useState, useEffect } from "react"
-import {
-  useSelectionContext,
-  useSelectionUpdateContext,
-} from "../../utils/context/SelectionContext"
+import { useState } from "react"
+import { useSelectionContext } from "../../utils/context/SelectionContext"
 import useFetch from "../../utils/hooks/useFetch"
 import "./lineChartStyle.scss"
 import { Cryptodata } from "./lineChartData"
-import { unixToDate, getXData, getYData } from "../../utils/utilFunctions"
+import { getXData, getYData } from "../../utils/utilFunctions"
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -30,38 +27,22 @@ ChartJS.register(
   Legend
 )
 
+//Cryptodata is back up data in case the API is down
+
 function LineChart() {
   const [daySelection, setDaySelection] = useState("day")
   let selection = useSelectionContext()
-  const setSelection = useSelectionUpdateContext()
 
-  useEffect(() => {
-    setSelection("binance")
-  }, [])
+  const dayWeekMonth = { day: "1", week: "7", month: "30" }
 
-  const [Day] = useFetch(
-    `https://api.coingecko.com/api/v3/exchanges/${selection}/volume_chart?days=1`
-  )
-  const [Week] = useFetch(
-    `https://api.coingecko.com/api/v3/exchanges/${selection}/volume_chart?days=7`
+  const [Output] = useFetch(
+    `https://api.coingecko.com/api/v3/exchanges/${selection}/volume_chart?days=${dayWeekMonth[daySelection]}`
   )
 
-  const [month] = useFetch(
-    `https://api.coingecko.com/api/v3/exchanges/${selection}/volume_chart?days=30`
-  )
-
-  //setlineChartDataDay(Day)
-  // setlineChartDataWeek(Week)
-  // setlineChartData30(month)
-  // setlineChartDataYear(Year)
-
-  // console.log(lineChartDataDay)
-  // console.log(lineChartDataWeek)
-  // console.log(lineChartData30)
-
-  Cryptodata["day"] = Day
-  Cryptodata["week"] = Week
-  Cryptodata["month"] = month
+  console.log(Output)
+  if (Output instanceof Array) {
+    Cryptodata[daySelection] = Output
+  }
 
   const handleChange = function (e) {
     setDaySelection(e.target.value)
@@ -118,7 +99,7 @@ function LineChart() {
       <Line options={options} data={data} />
       <label for="days">Choose the time to chart</label>
       <select name="Days" id="days" onChange={handleChange}>
-        <option selected="selected" value="day">
+        <option selected value="day">
           Day
         </option>
         <option value="week"> Week</option>
