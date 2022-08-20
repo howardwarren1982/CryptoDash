@@ -33,7 +33,7 @@ function Login() {
       </div>
     )
   }
-  const signIn = () => {
+  const signIn = async () => {
     //validate email
     const re =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -41,8 +41,12 @@ function Login() {
       alert("Invalid email")
       return
     }
-
-    signInWithEmailAndPassword(email, password)
+    try {
+      await signInWithEmailAndPassword(email, password)
+    } catch (e) {
+      console.log(e)
+      alert(e.message)
+    }
   }
 
   return (
@@ -58,7 +62,6 @@ function Login() {
           onChange={e => setEmail(e.target.value)}
         />
         <input
-          autocomplete="off"
           className="password-signin"
           type="password"
           value={password}

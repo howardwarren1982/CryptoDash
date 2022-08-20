@@ -1,5 +1,10 @@
 const unixToDate = function (unixTimeStamp, timeConvertion = 1) {
+  let todaysDate = new Date()
   let date = new Date(unixTimeStamp * timeConvertion)
+  if (todaysDate.valueOf() - unixTimeStamp <= 86400000) {
+    return date.toLocaleTimeString()
+  }
+
   return date.toLocaleDateString()
 }
 
@@ -19,18 +24,16 @@ export const getYData = function (inputObj) {
   return outPut
 }
 
-// https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily
-// https://www.coingecko.com/en/api/documentation
-// get historical marked data include price market cap and 24h volume
+export const replaceNullWithAString = function (value) {
+  if (value == null) {
+    return "is null"
+  }
+}
 
-//https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true
-
-const currentCoinData = {
-  bitcoin: {
-    usd: 19237.51,
-    usd_market_cap: 367353352825.3456,
-    usd_24h_vol: 14786203996.016094,
-    usd_24h_change: -0.15301677680724698,
-    last_updated_at: 1656810379,
-  },
+export const mapObjectToArray = function (inputObj) {
+  let outPut = []
+  for (let key in inputObj) {
+    outPut.push([key, inputObj[key]])
+  }
+  return outPut
 }

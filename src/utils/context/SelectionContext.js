@@ -1,5 +1,6 @@
 import React from "react"
 import { useContext, useState } from "react"
+import { UserProvider } from "./UserContext"
 
 const SelectionContext = React.createContext()
 const UpdateSelection = React.createContext()
@@ -20,10 +21,12 @@ export function SelectionProvider({ children }) {
   }
 
   return (
-    <SelectionContext.Provider value={selection}>
-      <UpdateSelection.Provider value={updateSelection}>
-        {children}
-      </UpdateSelection.Provider>
-    </SelectionContext.Provider>
+    <UserProvider>
+      <SelectionContext.Provider value={selection}>
+        <UpdateSelection.Provider value={updateSelection}>
+          {children}
+        </UpdateSelection.Provider>
+      </SelectionContext.Provider>
+    </UserProvider>
   )
 }

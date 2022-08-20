@@ -8,32 +8,59 @@ import { getFirestore, setDoc, doc } from "firebase/firestore"
 import useFirebaseFunctions from "../../utils/hooks/useFirebaseFunctions"
 import { useDocument } from "react-firebase-hooks/firestore"
 import { useState, useEffect } from "react"
+import { useUserContext } from "../../utils/context/UserContext"
 
 function FollowBtn({ children }) {
+  const userInfo = useUserContext()
+  const [docRef, setDocRef] = useState()
   const auth = getAuth(app)
   const selection = useSelectionContext()
   const [user] = useAuthState(auth)
   const db = getFirestore(app)
-  const [coinList, setToCoinList] = useState([])
+  const [coinList, setToCoinList] = useState({})
+  useEffect(() => {
+    let isMounted = true
+    if (isMounted && userInfo) {
+      setDocRef(doc(db, "Follow", userInfo?.userId))
+    }
+
+    return () => {
+      console.log("cleaned up")
+      isMounted = false
+    }
+  }, [])
   const addToFirestore = useFirebaseFunctions(db, "Follow", user?.uid)
-  const [value] = useDocument(doc(db, "Follow", user.uid), {
+  const [value] = useDocument(docRef, {
     snapshotListenOptions: { includeMetadataChanges: true },
   })
+
   let handelClick
 
   useEffect(() => {
-    setToCoinList(value?.data().exchange)
+    let isMounted = true
+
+    if (isMounted) {
+      setToCoinList(value?.data()?.exchange)
+    }
+
+    return () => {
+      console.log("cleaned up")
+      isMounted = false
+    }
   }, [value])
 
   handelClick = () => {
     //if prevCoinList contains selection do not add to firestore
-    if (coinList.includes(selection)) {
+    if (Object.values(coinList).includes(selection)) {
       return
     }
-    const prevCoinList = coinList
-    const newCoinList = [...prevCoinList, selection]
+
+    //const newCoinList = { ...coinList, [selection]: selection }
+    const newCoinList = { ...coinList }
+    newCoinList[selection] = selection
     setToCoinList(newCoinList)
-    console.log(coinList)
+    console.log(newCoinList)
+
     addToFirestore({ exchange: newCoinList })
   }
 

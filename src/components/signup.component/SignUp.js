@@ -32,7 +32,7 @@ const SignUp = () => {
     )
   }
 
-  const signUp = () => {
+  const signUp = async () => {
     // if password not match, show error
 
     if (password !== confirmPassword) {
@@ -49,9 +49,15 @@ const SignUp = () => {
       return
     }
 
-    createUserWithEmailAndPassword(email, password)
-    {
-      navigate("/")
+    try {
+      await createUserWithEmailAndPassword(email, password)
+      //wait for 3 seconds
+      setTimeout(() => {
+        navigate("/")
+      }, 3000)
+    } catch (e) {
+      console.log(e)
+      alert(e.message)
     }
   }
 

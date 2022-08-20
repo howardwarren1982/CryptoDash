@@ -39,7 +39,6 @@ function LineChart() {
     `https://api.coingecko.com/api/v3/exchanges/${selection}/volume_chart?days=${dayWeekMonth[daySelection]}`
   )
 
-  console.log(Output)
   if (Output instanceof Array) {
     Cryptodata[daySelection] = Output
   }
@@ -97,11 +96,10 @@ function LineChart() {
   return (
     <div className="line-graph">
       <Line options={options} data={data} />
-      <label for="days">Choose the time to chart</label>
+      <label htmlFor="days">Choose the time to chart</label>
       <select name="Days" id="days" onChange={handleChange}>
-        <option selected value="day">
-          Day
-        </option>
+        <option defaultValue="day"></option>
+        <option value="day">Day</option>
         <option value="week"> Week</option>
         <option value="month">Month</option>
       </select>

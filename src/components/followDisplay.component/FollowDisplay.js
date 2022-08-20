@@ -10,29 +10,55 @@ import { useDocument } from "react-firebase-hooks/firestore"
 import { useState, useEffect } from "react"
 import { useSelectionUpdateContext } from "../../utils/context/SelectionContext"
 import { cryptoCoinList } from "../../data/appData"
+import { mapObjectToArray } from "../../utils/utilFunctions"
 
 function FollowDisplay() {
+  const [docRef, setDocRef] = useState()
   const auth = getAuth(app)
   const setSelection = useSelectionUpdateContext()
   const [followingList, setFollowingList] = useState()
   const [user] = useAuthState(auth)
   const db = getFirestore(app)
-  const [value] = useDocument(doc(db, "Follow", user?.uid), {
+
+  useEffect(() => {
+    let isMounted = true
+    if (isMounted) {
+      setDocRef(doc(db, "Follow", user?.uid))
+    }
+    return () => {
+      console.log("cleaned up")
+      isMounted = false
+    }
+  }, [])
+  //const docRef = doc(db, "Follow", user?.uid)
+  const [value] = useDocument(docRef, {
     snapshotListenOptions: { includeMetadataChanges: true },
   })
 
   useEffect(() => {
-    setFollowingList(value?.data().exchange)
+    let isMounted = true
+    if (isMounted) {
+      setFollowingList(mapObjectToArray(value?.data()?.exchange))
+    }
+    return () => {
+      console.log("cleaned up")
+      isMounted = false
+    }
   }, [value])
-
-  let handelClick
 
   return (
     <div className="following-box">
       <h3>Following</h3>
       <div className="border"></div>
-      {followingList?.map(item => {
-        return <h5 onClick={e => setSelection(e.target.innerText)}>{item}</h5>
+      {followingList?.map((item, index) => {
+        return (
+          <h5
+            key={`${index}${item}`}
+            onClick={e => setSelection(e.target.innerText)}
+          >
+            {item[0]}
+          </h5>
+        )
       })}
     </div>
   )

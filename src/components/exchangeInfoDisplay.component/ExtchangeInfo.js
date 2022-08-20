@@ -10,31 +10,65 @@ import { useDocument } from "react-firebase-hooks/firestore"
 import { useState, useEffect } from "react"
 import FollowBtn from "../followbtn.component/FollowBtn"
 import UnfollowBtn from "../unfollowbtn.component/UnfollowBtn"
+import { mapObjectToArray } from "../../utils/utilFunctions"
+import useFetch from "../../utils/hooks/useFetch"
 
 function ExtchangeInfo() {
+  // const [Output] = useFetch(`https://api.coingecko.com/api/v3/exchanges`)
+  const [docRef, setDocRef] = useState()
   const auth = getAuth(app)
   const [followingList, setFollowingList] = useState()
   const [user] = useAuthState(auth)
+  const selection = useSelectionContext()
   const db = getFirestore(app)
-  const [value] = useDocument(doc(db, "Follow", user?.uid), {
+
+  useEffect(() => {
+    let isMounted = true
+    if (isMounted) {
+      setDocRef(doc(db, "Follow", user?.uid))
+    }
+
+    return () => {
+      console.log("cleaned up")
+      isMounted = false
+    }
+  }, [])
+
+  const [value] = useDocument(docRef, {
     snapshotListenOptions: { includeMetadataChanges: true },
   })
-  let selection = useSelectionContext()
+
+  useEffect(() => {
+    let isMounted = true
+    if (isMounted) {
+      setFollowingList(mapObjectToArray(value?.data()?.exchange))
+    }
+
+    return () => {
+      console.log("cleaned up")
+      isMounted = false
+    }
+  }, [value])
+
+  // import useFetch from "../utils/hooks/useFetch"
+
+  // //https://api.coingecko.com/api/v3/exchanges0
+
+  // if (Output instanceof Array) {
+  //   cryptoCoinList = Output
+  // }
 
   const newCryptoList = cryptoCoinList.filter(item => {
     return item.id === selection
   })
-
-  useEffect(() => {
-    setFollowingList(value?.data().exchange)
-  }, [value])
 
   return (
     <div className="exchangeData">
       <h5 className="exchange-name">
         {newCryptoList[0] && newCryptoList[0]["name"]}
       </h5>
-      {followingList?.includes(selection) ? (
+
+      {followingList?.flat().includes(selection) ? (
         <UnfollowBtn>unfollow</UnfollowBtn>
       ) : (
         <FollowBtn>follow</FollowBtn>

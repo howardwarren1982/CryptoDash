@@ -16,15 +16,18 @@ const DashBoard = () => {
   useEffect(() => {
     setSelection("binance")
   }, [])
+
   const auth = getAuth(app)
-  const logout = () => {
-    signOut(auth)
-    {
+  const logout = async e => {
+    e.preventDefault()
+    try {
+      await signOut(auth)
       navigate("/")
+    } catch (e) {
+      console.log(e)
     }
   }
   const [user, loading, error] = useAuthState(auth)
-
   return (
     <div>
       <UserOnlyContent
@@ -57,19 +60,3 @@ const DashBoard = () => {
 }
 
 export default DashBoard
-
-// if (user) {
-//   return (
-//     <>
-//       <h1>You are not logged in</h1>
-//       <Login />
-//     </>
-//   )
-// } else {
-//   return (
-//     <div>
-//       <h1>THIS IS THE DASHBOARD APP!!!!</h1>
-//       <button onClick={logout}>Log out</button>
-//     </div>
-//   )
-// }
