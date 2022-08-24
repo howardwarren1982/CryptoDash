@@ -34,8 +34,6 @@ function FollowBtn({ children }) {
     snapshotListenOptions: { includeMetadataChanges: true },
   })
 
-  let handelClick
-
   useEffect(() => {
     let isMounted = true
 
@@ -49,17 +47,10 @@ function FollowBtn({ children }) {
     }
   }, [value])
 
-  handelClick = () => {
-    //if prevCoinList contains selection do not add to firestore
-    if (Object.values(coinList).includes(selection)) {
-      return
-    }
-
-    //const newCoinList = { ...coinList, [selection]: selection }
+  const handelClick = () => {
     const newCoinList = { ...coinList }
     newCoinList[selection] = selection
     setToCoinList(newCoinList)
-    console.log(newCoinList)
 
     addToFirestore({ exchange: newCoinList })
   }

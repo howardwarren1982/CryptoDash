@@ -10,6 +10,8 @@ import LineChart from "../components/chart.component/LineChart"
 import FollowDisplay from "../components/followDisplay.component/FollowDisplay"
 import ExtchangeInfo from "../components/exchangeInfoDisplay.component/ExtchangeInfo"
 import "./dashBoardStyle.scss"
+import ResponsiveSideBar from "../components/responsiveSideBar.component/ResponsiveSideBar"
+import DropDown from "../components/dropDown.component/DropDown"
 
 const DashBoard = () => {
   const setSelection = useSelectionUpdateContext()
@@ -37,7 +39,16 @@ const DashBoard = () => {
       >
         <div className="main-section">
           <div className="side-bar">
-            <SideBar />
+            <div className="side_bar">
+              {" "}
+              <SideBar />
+            </div>
+
+            <div className="resposive_sideBar">
+              <ResponsiveSideBar>
+                <SideBar />
+              </ResponsiveSideBar>
+            </div>
           </div>
           <div className="main-area">
             <nav>
@@ -45,11 +56,16 @@ const DashBoard = () => {
               <button className="signin-btn" onClick={logout}>
                 Log out
               </button>
+              <div className="resposive_following">
+                <DropDown />
+              </div>{" "}
             </nav>
 
             <div className="chartarea">
               <LineChart />
-              <FollowDisplay />
+              <div className="following_box">
+                <FollowDisplay />
+              </div>
             </div>
             <ExtchangeInfo />
           </div>

@@ -67,7 +67,7 @@ function LineChart() {
       },
       title: {
         display: true,
-        text: "Line Chart",
+        text: "Exchange Volume",
       },
     },
   }
@@ -78,7 +78,7 @@ function LineChart() {
     labels,
     datasets: [
       {
-        label: "Bitcoin Vs Usd",
+        label: "Exchange Volume Vs Time",
         data: getYData(Cryptodata[daySelection]),
         backgroundColor: "rgba(255, 255, 255, 1)",
         borderColor: "#ffffff",
@@ -96,12 +96,12 @@ function LineChart() {
   return (
     <div className="line-graph">
       <Line options={options} data={data} />
-      <label htmlFor="days">Choose the time to chart</label>
+      <label htmlFor="days">Number of past days to chart</label>
       <select name="Days" id="days" onChange={handleChange}>
         <option defaultValue="day"></option>
-        <option value="day">Day</option>
-        <option value="week"> Week</option>
-        <option value="month">Month</option>
+        <option value="day">1 Day</option>
+        <option value="week">7 Days</option>
+        <option value="month">30 Days</option>
       </select>
     </div>
   )

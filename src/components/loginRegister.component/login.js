@@ -26,12 +26,7 @@ function Login() {
     return <p>Loading...</p>
   }
   if (user) {
-    return (
-      <div>
-        <p>Signed In User: {user.email}</p>
-        {navigate("dashBoard")}
-      </div>
-    )
+    return <div>{navigate("dashBoard")}</div>
   }
   const signIn = async () => {
     //validate email

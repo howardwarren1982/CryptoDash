@@ -65,4 +65,19 @@
       text-decoration: underline;
     }
   }
+
+  .link-to-login {
+    margin-top: 15px;
+    color: rgb(163, 85, 170);
+  }
+
+  .sign_up_error_msg {
+    color: white;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+}
+
+.sign_up_error_msg {
+  color: white;
 }

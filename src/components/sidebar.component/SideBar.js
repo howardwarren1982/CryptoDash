@@ -1,5 +1,4 @@
 import React from "react"
-import { cryptoCoinList } from "../../data/appData"
 import "./sideBarStyle.scss"
 import { useState, useEffect } from "react"
 import useFetch from "../../utils/hooks/useFetch"
@@ -13,7 +12,7 @@ function SideBar() {
   const auth = getAuth(app)
   const setSelection = useSelectionUpdateContext()
   let [searchresult, setSearchResult] = useState("")
-  const [user, loading, error] = useAuthState(auth)
+  const [user] = useAuthState(auth)
   const [exchangeListData] = useFetch(
     "https://api.coingecko.com/api/v3/exchanges"
   )

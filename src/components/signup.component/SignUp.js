@@ -16,8 +16,8 @@ const SignUp = () => {
 
   if (error) {
     return (
-      <div>
-        <p>Error: {error.message}</p>
+      <div className="sign_up_error_msg">
+        <h1>Error: {error.message}</h1>
       </div>
     )
   }
@@ -26,8 +26,8 @@ const SignUp = () => {
   }
   if (user) {
     return (
-      <div>
-        <p>Registered User: {user.email}</p>
+      <div className="register_success">
+        <h1>Registered User: {user.email}</h1>
       </div>
     )
   }
@@ -37,6 +37,9 @@ const SignUp = () => {
 
     if (password !== confirmPassword) {
       alert("Passwords do not match")
+      return
+    } else if (password.length < 6) {
+      alert("Password must be at least 6 characters")
       return
     }
 
@@ -91,7 +94,9 @@ const SignUp = () => {
         <button className="signin-btn" onClick={signUp}>
           Register
         </button>
-        <Link to="/">Login</Link>
+        <Link className="link-to-login" to="/">
+          Login
+        </Link>
       </div>
     </div>
   )
