@@ -8,7 +8,10 @@ const DropDown = ({ children }) => {
       <nav role="navigation" class="primary-navigation">
         <ul>
           <li>
-            <a href="#">Following </a>
+            <a href="#" className="signin-btn">
+              {" "}
+              Following{" "}
+            </a>
             <ul className="dropdown">
               <li>
                 <FollowDisplay />

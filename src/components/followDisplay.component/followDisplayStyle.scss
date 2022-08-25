@@ -15,6 +15,10 @@
   }
 
   h5 {
+    cursor: pointer;
     padding-top: 10px;
+    &:hover {
+      color: #a355aa;
+    }
   }
 }
