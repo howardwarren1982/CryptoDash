@@ -1,10 +1,9 @@
 import { Link, navigate } from "gatsby"
 import React from "react"
-import { getAuth, signOut } from "firebase/auth"
+import { getAuth } from "firebase/auth"
 import app from "gatsby-plugin-firebase-v9.0"
 import { useState } from "react"
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth"
-import Layout from "../layout"
 import "./loginStyle.scss"
 
 function Login() {

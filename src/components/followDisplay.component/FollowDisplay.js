@@ -1,15 +1,12 @@
 import React from "react"
 import "./followDisplayStyle.scss"
-import { useSelectionContext } from "../../utils/context/SelectionContext"
 import { getAuth } from "firebase/auth"
 import app from "gatsby-plugin-firebase-v9.0"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { getFirestore, doc } from "firebase/firestore"
-import useFirebaseFunctions from "../../utils/hooks/useFirebaseFunctions"
 import { useDocument } from "react-firebase-hooks/firestore"
 import { useState, useEffect } from "react"
 import { useSelectionUpdateContext } from "../../utils/context/SelectionContext"
-import { cryptoCoinList } from "../../data/appData"
 import { mapObjectToArray } from "../../utils/utilFunctions"
 
 function FollowDisplay() {

@@ -10,22 +10,18 @@ const unixToDate = function (unixTimeStamp, timeConvertion = 1) {
 
 export const getXData = function (inputObj) {
   let outPut = []
-  inputObj?.map(item => {
-    outPut.push(unixToDate(item[0]))
-  })
+  inputObj?.map(item => outPut.push(unixToDate(item[0])))
   return outPut
 }
 
 export const getYData = function (inputObj) {
   let outPut = []
-  inputObj?.map(item => {
-    outPut.push(item[1])
-  })
+  inputObj?.map(item => outPut.push(item[1]))
   return outPut
 }
 
 export const replaceNullWithAString = function (value) {
-  if (value == null) {
+  if (value === null) {
     return "is null"
   }
 }

@@ -5,7 +5,7 @@ import "./dropDownStyle.scss"
 const DropDown = ({ children }) => {
   return (
     <div className="drop_down">
-      <nav role="navigation" class="primary-navigation">
+      <nav className="primary-navigation">
         <ul>
           <li>
             <a href="#" className="signin-btn">

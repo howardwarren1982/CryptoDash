@@ -1,6 +1,6 @@
 import React from "react"
 import "./sideBarStyle.scss"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import useFetch from "../../utils/hooks/useFetch"
 import { useSelectionUpdateContext } from "../../utils/context/SelectionContext"
 import { useAuthState } from "react-firebase-hooks/auth"
