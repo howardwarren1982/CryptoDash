@@ -4,6 +4,4 @@
 
 Kick off your Dashboard project with this default boilerplate.
 
-Firebase
-useContext - for app state
-useFetch
+Firebase, useContext - for app state, useFetch
