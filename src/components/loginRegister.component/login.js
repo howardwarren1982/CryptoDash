@@ -8,21 +8,18 @@ import "./loginStyle.scss"
 
 function Login() {
   const auth = getAuth(app)
-
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth)
 
   if (error) {
-    return (
-      <div>
-        <p>Error: {error.message}</p>
-      </div>
-    )
+    {
+      alert(error.message)
+    }
   }
   if (loading) {
-    return <p>Loading...</p>
+    return <h1>Loading...</h1>
   }
   if (user) {
     return <div>{navigate("dashBoard")}</div>
@@ -43,10 +40,17 @@ function Login() {
     }
   }
 
+  const handleKeypress = e => {
+    if (e.code === "Enter") {
+      signIn()
+    }
+  }
+
   return (
     <div className="login-screen">
       <div className="blockBG">
         <h1 className="login-header">Login</h1>
+
         <input
           className="email-signin"
           id="email"
@@ -54,6 +58,7 @@ function Login() {
           value={email}
           placeholder="Email"
           onChange={e => setEmail(e.target.value)}
+          onKeyPress={handleKeypress}
         />
         <input
           className="password-signin"
@@ -61,10 +66,13 @@ function Login() {
           value={password}
           placeholder="Password"
           onChange={e => setPassword(e.target.value)}
+          onKeyPress={handleKeypress}
         />
+
         <button className="signin-btn" onClick={signIn}>
           Sign In
         </button>
+
         <Link className="register-link" to="register">
           Sign Up
         </Link>

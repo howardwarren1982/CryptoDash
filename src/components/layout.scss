@@ -1,6 +1,7 @@
 /*-------------------------- */
 /*Style Guide*/
 /*-------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300&display=swap");
 
 :root {
   --black: rgba(0, 0, 0, 1);
@@ -28,7 +29,7 @@
 }
 
 html {
-  // font-family: ;
+  //font-family: var(--font-family-faustina);
   // font-size: ;
   // font-weight: ;
   text-rendering: optimizeLegibility;

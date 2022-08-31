@@ -10,6 +10,7 @@ import LineChart from "../components/chart.component/LineChart"
 import FollowDisplay from "../components/followDisplay.component/FollowDisplay"
 import ExtchangeInfo from "../components/exchangeInfoDisplay.component/ExtchangeInfo"
 import "./dashBoardStyle.scss"
+import "../components/layout.scss"
 import ResponsiveSideBar from "../components/responsiveSideBar.component/ResponsiveSideBar"
 import DropDown from "../components/dropDown.component/DropDown"
 
@@ -29,7 +30,7 @@ const DashBoard = () => {
       console.log(e)
     }
   }
-  const [user, loading, error] = useAuthState(auth)
+  const [user] = useAuthState(auth)
   return (
     <div>
       <UserOnlyContent

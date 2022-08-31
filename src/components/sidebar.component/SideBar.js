@@ -1,6 +1,6 @@
 import React from "react"
 import "./sideBarStyle.scss"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import useFetch from "../../utils/hooks/useFetch"
 import { useSelectionUpdateContext } from "../../utils/context/SelectionContext"
 import { useAuthState } from "react-firebase-hooks/auth"
@@ -13,7 +13,7 @@ function SideBar() {
   const setSelection = useSelectionUpdateContext()
   let [searchresult, setSearchResult] = useState("")
   const [user] = useAuthState(auth)
-  const [exchangeListData] = useFetch(
+  let [exchangeListData] = useFetch(
     "https://api.coingecko.com/api/v3/exchanges"
   )
 

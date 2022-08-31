@@ -10,7 +10,7 @@ const ResponsiveSideBar = ({ children }) => {
           className="openSidebarMenu"
           id="openSidebarMenu"
         />
-        <label for="openSidebarMenu" className="sidebarIconToggle">
+        <label htmlFor="openSidebarMenu" className="sidebarIconToggle">
           <div className="spinner diagonal part-1"></div>
           <div className="spinner horizontal"></div>
           <div className="spinner diagonal part-2"></div>

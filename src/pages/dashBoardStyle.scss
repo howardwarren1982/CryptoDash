@@ -1,4 +1,5 @@
 .main-section {
+  font-family: "Roboto", sans-serif;
   background-color: #04070a;
   color: white;
   display: flex;
@@ -74,6 +75,8 @@
   .main-section {
     width: 100%;
     overflow: scroll;
+    padding: 0px;
+    flex-direction: column;
 
     .Dash-heading,
     .signin-btn {
@@ -81,6 +84,7 @@
     }
 
     nav {
+      padding-top: 15px;
       margin-left: 10px;
       flex-direction: column;
     }

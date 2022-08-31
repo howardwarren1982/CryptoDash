@@ -64,6 +64,12 @@ const SignUp = () => {
     }
   }
 
+  const handleKeypress = e => {
+    if (e.code === "Enter") {
+      signUp()
+    }
+  }
+
   return (
     <div className="template">
       <div className="signup-screen">
@@ -75,6 +81,7 @@ const SignUp = () => {
           value={email}
           placeholder="email"
           onChange={e => setEmail(e.target.value)}
+          onKeyPress={handleKeypress}
         />
         <input
           className="password-signup"
@@ -83,6 +90,7 @@ const SignUp = () => {
           value={password}
           placeholder="password"
           onChange={e => setPassword(e.target.value)}
+          onKeyPress={handleKeypress}
         />
         <input
           className="password-signup"
@@ -90,6 +98,7 @@ const SignUp = () => {
           type="password"
           placeholder="confirm Password"
           onChange={e => setConfirmPassword(e.target.value)}
+          onKeyPress={handleKeypress}
         />
         <button className="signin-btn" onClick={signUp}>
           Register
