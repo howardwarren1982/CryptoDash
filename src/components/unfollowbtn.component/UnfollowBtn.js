@@ -30,9 +30,7 @@ function UnfollowBtn({ children }) {
       isMounted = false
     }
   }, [])
-  const [value] = useDocument(docRef, {
-    // snapshotListenOptions: { includeMetadataChanges: true },
-  })
+  const [value] = useDocument(docRef, {})
 
   useEffect(() => {
     let isMounted = true
@@ -53,7 +51,6 @@ function UnfollowBtn({ children }) {
     return newCoinList
   }
 
-  //delete coinList[selection]
   const handelClick = () => {
     const newCoinList = removeKey(coinList, selection)
     setToCoinList(newCoinList)
