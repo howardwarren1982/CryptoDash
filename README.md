@@ -2,6 +2,8 @@
   Crypto Dash Project
 </h1>
 
+[See The Live Site](https://howardcryptodash.com)
+
 Features
 - Fetches cryptocurrency data from CoinGecko.
 - User authentication using Firebase.
