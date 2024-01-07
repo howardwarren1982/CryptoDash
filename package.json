@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "Crypto Dash",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Crypto dashboard exchange display app",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Howard Warren",
   "dependencies": {
     "chart.js": "^3.8.0",
     "firebase": "^9.8.3",
